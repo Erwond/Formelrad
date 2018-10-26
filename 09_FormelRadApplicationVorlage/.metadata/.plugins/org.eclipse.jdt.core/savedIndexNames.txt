@@ -1,1 +1,0 @@
-INDEX VERSION 1.129+D:\Modul_AgileArbeiten\Formelrad\09_FormelRadApplicationVorlage\.metadata\.plugins\org.eclipse.jdt.core
