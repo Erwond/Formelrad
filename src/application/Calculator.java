@@ -44,9 +44,16 @@ public class Calculator {
 	}
 
 	public void calculate() {
-		/* Hier auf Grund der vorhanden Werte entscheiden
-		 * welche Methode unten aufgerufen werden muss.
-		 */
+		if(this.strom != Double.NaN){
+			if(this.widerstand != Double.NaN){
+				this.spannung = UFromRAndI(this.widerstand, this.strom);
+			}
+		}
+	}
+	
+	public double UFromRAndI (double R, double I){
+		double U = R * I;
+		return U;
 	}
 	
 	/* Hier die Methoden mit den Formlen hinzufügen
