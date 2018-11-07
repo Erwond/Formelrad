@@ -44,12 +44,28 @@ public class Calculator {
 	}
 
 	public void calculate() {
-		/* Hier auf Grund der vorhanden Werte entscheiden
-		 * welche Methode unten aufgerufen werden muss.
-		 */
+		if (this.leistung != Double.NaN){
+			if(this.spannung != Double.NaN){
+			  if(this.widerstand != Double.NaN){
+				this.strom = IFromPAndU(this.leistung, this.spannung);
+				this.strom = IFromUAndR(this.spannung, this.widerstand);
+				this.strom = IFromPAndR(this.leistung, this.widerstand);
+			  }
+			}
+		}
 	}
 	
-	/* Hier die Methoden mit den Formlen hinzufügen
-	 */
+	public double IFromPAndU (double P, double U){
+		double I = P/U;
+		return I;
+	}
 	
+	public double IFromUAndR (double U, double R){
+		double I = U/R;
+		return I;
+	}
+	public double IFromPAndR (double P, double R){   
+		double I = Math.sqrt(P/R);
+		return I;
+	}
 }
