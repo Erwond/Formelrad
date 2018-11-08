@@ -2,6 +2,7 @@ package application;
 
 /**
  * Berechnet das Formelrad
+ * 
  * @author Peter Rutschmann
  * @version 13.09.2018
  */
@@ -10,7 +11,7 @@ public class Calculator {
 	private double spannung;
 	private double strom;
 	private double widerstand;
-	
+
 	public Calculator(double leistung, double spannung, double strom, double widerstand) {
 		super();
 		this.leistung = leistung;
@@ -18,11 +19,11 @@ public class Calculator {
 		this.strom = strom;
 		this.widerstand = widerstand;
 	}
-	
+
 	public double getLeistung() {
 		return leistung;
 	}
-	
+
 	public double getSpannung() {
 		return spannung;
 	}
@@ -37,37 +38,42 @@ public class Calculator {
 
 	@Override
 	public String toString() {
-		return "Calculator [leistung=" + leistung + 
-				", spannung=" + spannung + 
-				", strom=" + strom + 
-				", widerstand="	+ widerstand + "]";
+		return "Calculator [leistung=" + leistung + ", spannung=" + spannung + ", strom=" + strom + ", widerstand="
+				+ widerstand + "]";
 	}
 
 	public void calculate() {
 		Double nan = new Double(Double.NaN);
-		if(!nan.equals(this.strom)){
-			if(!nan.equals(this.widerstand)){
-				System.out.println("A " + this.widerstand);
+		if (!nan.equals(this.strom)) {
+			if (!nan.equals(this.widerstand)) {
 				this.spannung = UFromRAndI(this.widerstand, this.strom);
-			}
-			else if(!nan.equals(this.leistung)){
-				System.out.println("B");
+			} else if (!nan.equals(this.leistung)) {
 				this.spannung = UFromPAndI(this.leistung, this.strom);
 			}
 		}
+		if (!nan.equals(this.widerstand)) {
+			if(!nan.equals(this.leistung)){
+				this.spannung = UFromPAndR(this.leistung, this.widerstand);
+			}
+		}
 	}
-	
-	public double UFromRAndI (double R, double I){
+
+	public double UFromRAndI(double R, double I) {
 		double U = R * I;
 		return U;
 	}
-	
-	public double UFromPAndI (double P, double I){
+
+	public double UFromPAndI(double P, double I) {
 		double U = P / I;
 		return U;
 	}
-	
-	/* Hier die Methoden mit den Formlen hinzufügen
+
+	public double UFromPAndR(double P, double R) {
+		double U = Math.sqrt(P * R);
+		return U;
+	}
+	/*
+	 * Hier die Methoden mit den Formlen hinzufügen
 	 */
-	
+
 }
