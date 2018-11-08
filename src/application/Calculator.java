@@ -59,6 +59,11 @@ public class Calculator {
 				this.spannung = UFromPAndR(this.leistung, this.widerstand);
 			}
 		}
+		if(!nan.equals(this.leistung)){
+			if(!nan.equals(this.spannung)){
+				this.widerstand = RFromUAndP(this.spannung, this.leistung);
+			}
+		}
 	}
 
 	public double UFromRAndI(double R, double I) {
@@ -83,6 +88,11 @@ public class Calculator {
 
 	public double RFromUAndI(double U, double I) {
 		double R = U / I;
+		return R;
+	}
+	
+	public double RFromUAndP(double U, double P) {
+		double R = Math.pow(U, 2) / P;
 		return R;
 	}
 	/*
