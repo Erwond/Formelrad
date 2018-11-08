@@ -44,15 +44,26 @@ public class Calculator {
 	}
 
 	public void calculate() {
-		if(this.strom != Double.NaN){
-			if(this.widerstand != Double.NaN){
+		Double nan = new Double(Double.NaN);
+		if(!nan.equals(this.strom)){
+			if(!nan.equals(this.widerstand)){
+				System.out.println("A " + this.widerstand);
 				this.spannung = UFromRAndI(this.widerstand, this.strom);
+			}
+			else if(!nan.equals(this.leistung)){
+				System.out.println("B");
+				this.spannung = UFromPAndI(this.leistung, this.strom);
 			}
 		}
 	}
 	
 	public double UFromRAndI (double R, double I){
 		double U = R * I;
+		return U;
+	}
+	
+	public double UFromPAndI (double P, double I){
+		double U = P / I;
 		return U;
 	}
 	
