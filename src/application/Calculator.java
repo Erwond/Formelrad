@@ -49,11 +49,19 @@ public class Calculator {
 				this.spannung = UFromRAndI(this.widerstand, this.strom);
 			} else if (!nan.equals(this.leistung)) {
 				this.spannung = UFromPAndI(this.leistung, this.strom);
+				this.widerstand = RFromPAndI(this.leistung, this.strom);
+			} else if (!nan.equals(this.spannung)) {
+				this.widerstand = RFromUAndI(this.spannung, this.strom);
 			}
 		}
 		if (!nan.equals(this.widerstand)) {
-			if(!nan.equals(this.leistung)){
+			if (!nan.equals(this.leistung)) {
 				this.spannung = UFromPAndR(this.leistung, this.widerstand);
+			}
+		}
+		if(!nan.equals(this.leistung)){
+			if(!nan.equals(this.spannung)){
+				this.widerstand = RFromUAndP(this.spannung, this.leistung);
 			}
 		}
 	}
@@ -71,6 +79,21 @@ public class Calculator {
 	public double UFromPAndR(double P, double R) {
 		double U = Math.sqrt(P * R);
 		return U;
+	}
+
+	public double RFromPAndI(double P, double I) {
+		double R = P / Math.pow(I, 2);
+		return R;
+	}
+
+	public double RFromUAndI(double U, double I) {
+		double R = U / I;
+		return R;
+	}
+	
+	public double RFromUAndP(double U, double P) {
+		double R = Math.pow(U, 2) / P;
+		return R;
 	}
 	/*
 	 * Hier die Methoden mit den Formlen hinzufügen
