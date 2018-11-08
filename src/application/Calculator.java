@@ -49,6 +49,7 @@ public class Calculator {
 				this.spannung = UFromRAndI(this.widerstand, this.strom);
 			} else if (!nan.equals(this.leistung)) {
 				this.spannung = UFromPAndI(this.leistung, this.strom);
+				this.widerstand = RFromPAndI(this.leistung, this.strom);
 			}
 		}
 		if (!nan.equals(this.widerstand)) {
@@ -72,6 +73,12 @@ public class Calculator {
 		double U = Math.sqrt(P * R);
 		return U;
 	}
+	
+	public double RFromPAndI(double P, double I) {
+		double R = P / Math.pow(I, 2);
+		return R;
+	}
+	
 	/*
 	 * Hier die Methoden mit den Formlen hinzufügen
 	 */
