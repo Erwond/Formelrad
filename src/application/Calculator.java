@@ -103,7 +103,7 @@ public class Calculator {
 		return P;
 	}
 	
-	public double PFromUandI(double U, double I){
+	public double PFromUAndI(double U, double I){
 		double P = U * I;
 		return P;
 	}
