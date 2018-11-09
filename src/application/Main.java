@@ -106,16 +106,19 @@ public class Main extends Application {
 			e.printStackTrace();
 		}
 	}
-
-	public double parseTxtToDouble(String txt){
+	
+	public double parseTxtToDouble(String txt) {
 		String txtToParse;
-		if(txt.isEmpty())
+		if (txt.isEmpty())
 			txtToParse = "NaN";
+
 		else
+
 			txtToParse = txt;
 		double d = Double.parseDouble(txtToParse);
 		return d;
 	}
+
 	
 	public static void main(String[] args) {
 		launch(args);
