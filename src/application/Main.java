@@ -11,6 +11,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
+import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 
 /**
@@ -79,33 +80,54 @@ public class Main extends Application {
 			btnBerechnen.setText("Berechnen");
 			root.getChildren().add(btnBerechnen);
 			
+			Label lblWarning = new Label();
+			lblWarning.relocate(10, 480);
+			lblWarning.setFont(Font.font(17));
+			lblWarning.setTextFill(Color.web("#D8C300"));
+			root.getChildren().add(lblWarning);
+			
 			btnBerechnen.setOnAction(e -> {
-				Calculator myCalculator = new Calculator(
-						parseTxtToDouble(txLeistung.getText()),
-						parseTxtToDouble(txSpannung.getText()),
-						parseTxtToDouble(txStrom.getText()),
-						parseTxtToDouble(txWiderstand.getText()));
-				System.out.print("Before:  ");
-				System.out.println(myCalculator.toString());
-				myCalculator.calculate();
-				System.out.print("After: ");
-				System.out.println(myCalculator.toString());
-					
-				txLeistung.setText(Double.toString(myCalculator.getLeistung()));
-				if(myCalculator.isLeistungColor())
-					txLeistung.setStyle("-fx-text-inner-color: red;");
-				txSpannung.setText(Double.toString(myCalculator.getSpannung()));
-				if(myCalculator.isSpannungColor())
-					txSpannung.setStyle("-fx-text-inner-color: red;");
-				txStrom.setText(Double.toString(myCalculator.getStrom()));
-				if(myCalculator.isStromColor())
-					txStrom.setStyle("-fx-text-inner-color: red;");
-				txWiderstand.setText(Double.toString(myCalculator.getWiderstand()));
-				if(myCalculator.isWiderstandColor())
-					txWiderstand.setStyle("-fx-text-inner-color: red;");
+				int score = 0;
+				if(txWiderstand.getText().trim().isEmpty())
+					score++;
+				if (txLeistung.getText().trim().isEmpty())
+					score++;
+				if (txSpannung.getText().trim().isEmpty())
+					score++;
+				if (txStrom.getText().trim().isEmpty())
+					score++;
+				if(score < 2)
+					lblWarning.setText("Bitte gib nur 2 Werte ein!");
+				else if(score > 2)
+					lblWarning.setText("Du musst mindestens 2 Werte eingeben!");
+				else{
+					Calculator myCalculator = new Calculator(
+							parseTxtToDouble(txLeistung.getText()),
+							parseTxtToDouble(txSpannung.getText()),
+							parseTxtToDouble(txStrom.getText()),
+							parseTxtToDouble(txWiderstand.getText()));
+					System.out.print("Vorher:  ");
+					System.out.println(myCalculator.toString());
+					myCalculator.calculate();
+					System.out.print("Nachher: ");
+					System.out.println(myCalculator.toString());
+						
+					txLeistung.setText(Double.toString(myCalculator.getLeistung()));
+					if(myCalculator.isLeistungColor())
+						txLeistung.setStyle("-fx-text-inner-color: red;");
+					txSpannung.setText(Double.toString(myCalculator.getSpannung()));
+					if(myCalculator.isSpannungColor())
+						txSpannung.setStyle("-fx-text-inner-color: red;");
+					txStrom.setText(Double.toString(myCalculator.getStrom()));
+					if(myCalculator.isStromColor())
+						txStrom.setStyle("-fx-text-inner-color: red;");
+					txWiderstand.setText(Double.toString(myCalculator.getWiderstand()));
+					if(myCalculator.isWiderstandColor())
+						txWiderstand.setStyle("-fx-text-inner-color: red;");
+				}		
 			});
 
-			Scene scene = new Scene(root, 330, 490);
+			Scene scene = new Scene(root, 330, 520);
 			scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
 			primaryStage.setScene(scene);
 			primaryStage.setTitle("Formelrad");
