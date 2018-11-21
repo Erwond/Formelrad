@@ -113,9 +113,17 @@ public class Main extends Application {
 					System.out.println(myCalculator.toString());
 						
 					txLeistung.setText(Double.toString(myCalculator.getLeistung()));
+					if(myCalculator.isLeistungColor())
+						txLeistung.setStyle("-fx-text-inner-color: red;");
 					txSpannung.setText(Double.toString(myCalculator.getSpannung()));
+					if(myCalculator.isSpannungColor())
+						txSpannung.setStyle("-fx-text-inner-color: red;");
 					txStrom.setText(Double.toString(myCalculator.getStrom()));
+					if(myCalculator.isStromColor())
+						txStrom.setStyle("-fx-text-inner-color: red;");
 					txWiderstand.setText(Double.toString(myCalculator.getWiderstand()));
+					if(myCalculator.isWiderstandColor())
+						txWiderstand.setStyle("-fx-text-inner-color: red;");
 				}		
 			});
 
