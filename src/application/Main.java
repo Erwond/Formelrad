@@ -11,6 +11,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
+import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 
 /**
@@ -79,6 +80,12 @@ public class Main extends Application {
 			btnBerechnen.setText("Berechnen");
 			root.getChildren().add(btnBerechnen);
 			
+			Label lblWarning = new Label();
+			lblWarning.relocate(100, 480);
+			lblWarning.setFont(Font.font(18));
+			lblWarning.setTextFill(Color.web("#D8C300"));
+			root.getChildren().add(lblWarning);
+			
 			btnBerechnen.setOnAction(e -> {
 				Calculator myCalculator = new Calculator(
 						parseTxtToDouble(txLeistung.getText()),
@@ -97,7 +104,7 @@ public class Main extends Application {
 				txWiderstand.setText(Double.toString(myCalculator.getWiderstand()));
 			});
 
-			Scene scene = new Scene(root, 330, 490);
+			Scene scene = new Scene(root, 330, 520);
 			scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
 			primaryStage.setScene(scene);
 			primaryStage.setTitle("Formelrad");
