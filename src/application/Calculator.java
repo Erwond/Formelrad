@@ -87,66 +87,66 @@ public class Calculator {
 	}
 
 	public double UFromPAndI(double P, double I) {
-		System.out.println("Calculate U from R and I");
+		System.out.println("Calculate U from P and I");
 		double U = P / I;
 		return U;
 	}
 
 	public double UFromPAndR(double P, double R) {
-		System.out.println("Calculate U from R and I");
+		System.out.println("Calculate U from R and P");
 		double U = Math.sqrt(P * R);
 		return U;
 	}
 
 	public double RFromPAndI(double P, double I) {
-		System.out.println("Calculate U from R and I");
+		System.out.println("Calculate R from P and I");
 		double R = P / Math.pow(I, 2);
 		return R;
 	}
 
 	public double RFromUAndI(double U, double I) {
-		System.out.println("Calculate U from R and I");
+		System.out.println("Calculate R from U and I");
 		double R = U / I;
 		return R;
 	}
 	
 	public double RFromUAndP(double U, double P) {
-		System.out.println("Calculate U from R and I");
+		System.out.println("Calculate R from U and P");
 		double R = Math.pow(U, 2) / P;
 		return R;
 	}
 	
 	public double PFromRandI(double R, double I){
-		System.out.println("Calculate U from R and I");
+		System.out.println("Calculate P from R and I");
 		double P = R * Math.pow(I, 2);
 		return P;
 	}
 	
 	public double PFromUAndI(double U, double I){
-		System.out.println("Calculate U from R and I");
+		System.out.println("Calculate P from U and I");
 		double P = U * I;
 		return P;
 	}
 	
 	public double PFromUAndR(double U, double R){
-		System.out.println("Calculate U from R and I");
+		System.out.println("Calculate P from R and U");
 		double P = Math.pow(U, 2) * R;
 		return P;
 	}
 	
 	public double IFromPAndU (double P, double U){
-		System.out.println("Calculate U from R and I");
+		System.out.println("Calculate I from P and U");
 		double I = P/U;
 		return I;
 	}
 	
 	public double IFromUAndR (double U, double R){
-		System.out.println("Calculate U from R and I");
+		System.out.println("Calculate I from R and U");
 		double I = U/R;
 		return I;
 	}
 	public double IFromPAndR (double P, double R){
-		System.out.println("Calculate U from R and I");
+		System.out.println("Calculate I from P and R");
 		double I = Math.sqrt(P/R);
 		return I;
 	}
