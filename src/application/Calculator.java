@@ -1,5 +1,7 @@
 package application;
 
+import javafx.scene.paint.Color;
+
 /**
  * Berechnet das Formelrad
  * 
@@ -11,7 +13,13 @@ public class Calculator {
 	private double spannung;
 	private double strom;
 	private double widerstand;
+	private Color leistungColor = Color.web("Black");
+	private Color spannungColor = Color.web("Black");
+	private Color stromColor = Color.web("Black");
+	private Color widerstandColor = Color.web("Black");
 
+	
+	
 	public Calculator(double leistung, double spannung, double strom, double widerstand) {
 		super();
 		this.leistung = leistung;
@@ -19,22 +27,102 @@ public class Calculator {
 		this.strom = strom;
 		this.widerstand = widerstand;
 	}
-
+	
 	public double getLeistung() {
 		return leistung;
 	}
+
+
+
+	public void setLeistung(double leistung) {
+		this.leistung = leistung;
+	}
+
+
 
 	public double getSpannung() {
 		return spannung;
 	}
 
+
+
+	public void setSpannung(double spannung) {
+		this.spannung = spannung;
+	}
+
+
+
 	public double getStrom() {
 		return strom;
 	}
 
+
+
+	public void setStrom(double strom) {
+		this.strom = strom;
+	}
+
+
+
 	public double getWiderstand() {
 		return widerstand;
 	}
+
+
+
+	public void setWiderstand(double widerstand) {
+		this.widerstand = widerstand;
+	}
+
+
+
+	public Color getLeistungColor() {
+		return leistungColor;
+	}
+
+
+
+	public void setLeistungColor(Color leistungColor) {
+		this.leistungColor = leistungColor;
+	}
+
+
+
+	public Color getSpannungColor() {
+		return spannungColor;
+	}
+
+
+
+	public void setSpannungColor(Color spannungColor) {
+		this.spannungColor = spannungColor;
+	}
+
+
+
+	public Color getStromColor() {
+		return stromColor;
+	}
+
+
+
+	public void setStromColor(Color stromColor) {
+		this.stromColor = stromColor;
+	}
+
+
+
+	public Color getWiderstandColor() {
+		return widerstandColor;
+	}
+
+
+
+	public void setWiderstandColor(Color widerstandColor) {
+		this.widerstandColor = widerstandColor;
+	}
+
+
 
 	@Override
 	public String toString() {
@@ -83,71 +171,83 @@ public class Calculator {
 	public double UFromRAndI(double R, double I) {
 		System.out.println("Calculate U from R and I");
 		double U = R * I;
+		this.spannungColor = Color.web("Red");
 		return U;
 	}
 
 	public double UFromPAndI(double P, double I) {
 		System.out.println("Calculate U from P and I");
 		double U = P / I;
+		this.spannungColor = Color.web("Red");
 		return U;
 	}
 
 	public double UFromPAndR(double P, double R) {
 		System.out.println("Calculate U from R and P");
 		double U = Math.sqrt(P * R);
+		this.spannungColor = Color.web("Red");
 		return U;
 	}
 
 	public double RFromPAndI(double P, double I) {
 		System.out.println("Calculate R from P and I");
 		double R = P / Math.pow(I, 2);
+		this.widerstandColor = Color.web("Red");
 		return R;
 	}
 
 	public double RFromUAndI(double U, double I) {
 		System.out.println("Calculate R from U and I");
 		double R = U / I;
+		this.widerstandColor = Color.web("Red");
 		return R;
 	}
 	
 	public double RFromUAndP(double U, double P) {
 		System.out.println("Calculate R from U and P");
 		double R = Math.pow(U, 2) / P;
+		this.widerstandColor = Color.web("Red");
 		return R;
 	}
 	
 	public double PFromRandI(double R, double I){
 		System.out.println("Calculate P from R and I");
 		double P = R * Math.pow(I, 2);
+		this.leistungColor = Color.web("Red");
 		return P;
 	}
 	
 	public double PFromUAndI(double U, double I){
 		System.out.println("Calculate P from U and I");
 		double P = U * I;
+		this.leistungColor = Color.web("Red");
 		return P;
 	}
 	
 	public double PFromUAndR(double U, double R){
 		System.out.println("Calculate P from R and U");
 		double P = Math.pow(U, 2) * R;
+		this.leistungColor = Color.web("Red");
 		return P;
 	}
 	
 	public double IFromPAndU (double P, double U){
 		System.out.println("Calculate I from P and U");
 		double I = P/U;
+		this.stromColor = Color.web("Red");
 		return I;
 	}
 	
 	public double IFromUAndR (double U, double R){
 		System.out.println("Calculate I from R and U");
 		double I = U/R;
+		this.stromColor = Color.web("Red");
 		return I;
 	}
 	public double IFromPAndR (double P, double R){
 		System.out.println("Calculate I from P and R");
 		double I = Math.sqrt(P/R);
+		this.stromColor = Color.web("Red");
 		return I;
 	}
 	/*
