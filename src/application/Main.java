@@ -98,6 +98,8 @@ public class Main extends Application {
 					score++;
 				if(score < 2)
 					lblWarning.setText("Bitte gib nur 2 Werte ein!");
+				else if(score > 2)
+					lblWarning.setText("Du musst mindestens 2 Werte eingeben!");
 				else{
 					Calculator myCalculator = new Calculator(
 							parseTxtToDouble(txLeistung.getText()),
