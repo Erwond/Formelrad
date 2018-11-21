@@ -81,10 +81,10 @@ public class Main extends Application {
 			
 			btnBerechnen.setOnAction(e -> {
 				Calculator myCalculator = new Calculator(
-						Double.parseDouble(txLeistung.getText()),
-						Double.parseDouble(txSpannung.getText()),
-						Double.parseDouble(txStrom.getText()),
-						Double.parseDouble(txWiderstand.getText()));
+						parseTxtToDouble(txLeistung.getText()),
+						parseTxtToDouble(txSpannung.getText()),
+						parseTxtToDouble(txStrom.getText()),
+						parseTxtToDouble(txWiderstand.getText()));
 				System.out.print("Vorher:  ");
 				System.out.println(myCalculator.toString());
 				myCalculator.calculate();
@@ -106,7 +106,20 @@ public class Main extends Application {
 			e.printStackTrace();
 		}
 	}
+	
+	public double parseTxtToDouble(String txt) {
+		String txtToParse;
+		if (txt.isEmpty())
+			txtToParse = "NaN";
 
+		else
+
+			txtToParse = txt;
+		double d = Double.parseDouble(txtToParse);
+		return d;
+	}
+
+	
 	public static void main(String[] args) {
 		launch(args);
 	}
