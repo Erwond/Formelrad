@@ -80,6 +80,12 @@ public class Main extends Application {
 			btnBerechnen.setText("Berechnen");
 			root.getChildren().add(btnBerechnen);
 			
+			Button btnDeletValue = new Button();
+			btnDeletValue.relocate(175, 445);
+			btnDeletValue.setText("Delete");
+			btnDeletValue.setTextFill(Color.web("red"));
+			root.getChildren().add(btnDeletValue);
+			
 			Label lblWarning = new Label();
 			lblWarning.relocate(10, 480);
 			lblWarning.setFont(Font.font(17));
@@ -133,6 +139,14 @@ public class Main extends Application {
 					else
 						txWiderstand.setStyle("-fx-text-inner-color: black;");
 				}		
+				
+			});
+			
+			btnDeletValue.setOnAction(b -> {
+				txWiderstand.clear();
+				txStrom.clear();
+				txSpannung.clear();
+				txLeistung.clear();	
 			});
 
 			Scene scene = new Scene(root, 330, 520);
