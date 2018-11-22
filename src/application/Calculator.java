@@ -17,6 +17,7 @@ public class Calculator {
 	private boolean spannungColor;
 	private boolean stromColor;
 	private boolean widerstandColor;
+	 
 
 	public Calculator(double leistung, double spannung, double strom, double widerstand) {
 		super();
@@ -103,6 +104,10 @@ public class Calculator {
 	public void setWiderstandColor(boolean widerstandColor) {
 		this.widerstandColor = widerstandColor;
 	}
+	
+	public void DivisionByZero(boolean divisionIsZero){
+		
+	}
 
 	@Override
 	public String toString() {
@@ -157,9 +162,15 @@ public class Calculator {
 
 	public double UFromPAndI(double P, double I) {
 		System.out.println("Calculate U from P and I");
+		if (I != 0){
 		double U = P / I;
 		this.spannungColor = true;
 		return U;
+		}
+		else {
+			this.spannungColor = true;
+			return 0;
+		}
 	}
 
 	public double UFromPAndR(double P, double R) {
@@ -171,23 +182,42 @@ public class Calculator {
 
 	public double RFromPAndI(double P, double I) {
 		System.out.println("Calculate R from P and I");
+		if (I != 0){
 		double R = P / Math.pow(I, 2);
 		this.widerstandColor = true;
 		return R;
+		}
+		else {
+			this.widerstandColor = true;
+			return 0;
+		}
 	}
 
 	public double RFromUAndI(double U, double I) {
 		System.out.println("Calculate R from U and I");
+		if (I != 0){
 		double R = U / I;
 		this.widerstandColor = true;
 		return R;
+		}
+		else {
+			this.widerstandColor = true;
+			return 0;
+		}
 	}
 	
 	public double RFromUAndP(double U, double P) {
 		System.out.println("Calculate R from U and P");
+		if (P != 0) {
 		double R = Math.pow(U, 2) / P;
 		this.widerstandColor = true;
 		return R;
+		}
+		else {
+			this.widerstandColor = true;
+			return 0;
+		}
+		
 	}
 	
 	public double PFromRandI(double R, double I){
@@ -213,25 +243,40 @@ public class Calculator {
 	
 	public double IFromPAndU (double P, double U){
 		System.out.println("Calculate I from P and U");
+		if (U != 0){
 		double I = P/U;
 		this.stromColor = true;
 		return I;
+		}
+		else {
+			this.stromColor = true;
+			return 0;
+		}
 	}
 	
 	public double IFromUAndR (double U, double R){
 		System.out.println("Calculate I from R and U");
+		if (R != 0){
 		double I = U/R;
 		this.stromColor = true;
 		return I;
+		}
+		else {
+			this.stromColor = true;
+			return 0;
+		}
 	}
 	public double IFromPAndR (double P, double R){
 		System.out.println("Calculate I from P and R");
+		if (R != 0) {
 		double I = Math.sqrt(P/R);
 		this.stromColor = true;
 		return I;
+		}
+		else {
+			this.stromColor = true;
+			return 0;
+		}
 	}
-	/*
-	 * Hier die Methoden mit den Formlen hinzufügen
-	 */
 
 }
