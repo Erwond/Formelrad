@@ -5,8 +5,8 @@ import javafx.scene.paint.Color;
 /**
  * Berechnet das Formelrad
  * 
- * @author Peter Rutschmann
- * @version 13.09.2018
+ * @author Peter Rutschmann / Eric Walker / Nils Wyss
+ * @version 23.11.2018
  */
 public class Calculator {
 	private double leistung;
@@ -17,7 +17,6 @@ public class Calculator {
 	private boolean spannungColor;
 	private boolean stromColor;
 	private boolean widerstandColor;
-	 
 
 	public Calculator(double leistung, double spannung, double strom, double widerstand) {
 		super();
@@ -26,48 +25,34 @@ public class Calculator {
 		this.strom = strom;
 		this.widerstand = widerstand;
 	}
-	
+
 	public double getLeistung() {
 		return leistung;
 	}
-
-
 
 	public void setLeistung(double leistung) {
 		this.leistung = leistung;
 	}
 
-
-
 	public double getSpannung() {
 		return spannung;
 	}
-
-
 
 	public void setSpannung(double spannung) {
 		this.spannung = spannung;
 	}
 
-
-
 	public double getStrom() {
 		return strom;
 	}
-
-
 
 	public void setStrom(double strom) {
 		this.strom = strom;
 	}
 
-
-
 	public double getWiderstand() {
 		return widerstand;
 	}
-
-
 
 	public void setWiderstand(double widerstand) {
 		this.widerstand = widerstand;
@@ -104,9 +89,9 @@ public class Calculator {
 	public void setWiderstandColor(boolean widerstandColor) {
 		this.widerstandColor = widerstandColor;
 	}
-	
-	public void DivisionByZero(boolean divisionIsZero){
-		
+
+	public void DivisionByZero(boolean divisionIsZero) {
+
 	}
 
 	@Override
@@ -131,21 +116,18 @@ public class Calculator {
 				this.leistung = PFromUAndI(this.spannung, this.strom);
 				return;
 			}
-		}
-		else if (!nan.equals(this.widerstand)) {
+		} else if (!nan.equals(this.widerstand)) {
 			if (!nan.equals(this.leistung)) {
 				this.strom = IFromPAndR(this.leistung, this.widerstand);
 				this.spannung = UFromPAndR(this.leistung, this.widerstand);
 				return;
-			}
-			else if(!nan.equals(this.spannung)){
+			} else if (!nan.equals(this.spannung)) {
 				this.leistung = PFromUAndR(this.spannung, this.widerstand);
 				this.strom = IFromUAndR(this.spannung, this.widerstand);
 				return;
 			}
-		}
-		else if(!nan.equals(this.leistung)){
-			if(!nan.equals(this.spannung)){
+		} else if (!nan.equals(this.leistung)) {
+			if (!nan.equals(this.spannung)) {
 				this.widerstand = RFromUAndP(this.spannung, this.leistung);
 				this.strom = IFromPAndU(this.leistung, this.spannung);
 				return;
@@ -162,13 +144,11 @@ public class Calculator {
 
 	public double UFromPAndI(double P, double I) {
 		System.out.println("Calculate U from P and I");
-		if (I != 0){
-		double U = P / I;
 		this.spannungColor = true;
-		return U;
-		}
-		else {
-			this.spannungColor = true;
+		if (I != 0) {
+			double U = P / I;
+			return U;
+		} else {
 			return 0;
 		}
 	}
@@ -182,12 +162,11 @@ public class Calculator {
 
 	public double RFromPAndI(double P, double I) {
 		System.out.println("Calculate R from P and I");
-		if (I != 0){
-		double R = P / Math.pow(I, 2);
-		this.widerstandColor = true;
-		return R;
-		}
-		else {
+		if (I != 0) {
+			double R = P / Math.pow(I, 2);
+			this.widerstandColor = true;
+			return R;
+		} else {
 			this.widerstandColor = true;
 			return 0;
 		}
@@ -195,85 +174,81 @@ public class Calculator {
 
 	public double RFromUAndI(double U, double I) {
 		System.out.println("Calculate R from U and I");
-		if (I != 0){
-		double R = U / I;
-		this.widerstandColor = true;
-		return R;
-		}
-		else {
+		if (I != 0) {
+			double R = U / I;
+			this.widerstandColor = true;
+			return R;
+		} else {
 			this.widerstandColor = true;
 			return 0;
 		}
 	}
-	
+
 	public double RFromUAndP(double U, double P) {
 		System.out.println("Calculate R from U and P");
 		if (P != 0) {
-		double R = Math.pow(U, 2) / P;
-		this.widerstandColor = true;
-		return R;
-		}
-		else {
+			double R = Math.pow(U, 2) / P;
+			this.widerstandColor = true;
+			return R;
+		} else {
 			this.widerstandColor = true;
 			return 0;
 		}
-		
+
 	}
-	
-	public double PFromRandI(double R, double I){
+
+	public double PFromRandI(double R, double I) {
 		System.out.println("Calculate P from R and I");
 		double P = R * Math.pow(I, 2);
 		this.leistungColor = true;
 		return P;
 	}
-	
-	public double PFromUAndI(double U, double I){
+
+	public double PFromUAndI(double U, double I) {
 		System.out.println("Calculate P from U and I");
 		double P = U * I;
 		this.leistungColor = true;
 		return P;
 	}
-	
-	public double PFromUAndR(double U, double R){
+
+	public double PFromUAndR(double U, double R) {
 		System.out.println("Calculate P from R and U");
 		double P = Math.pow(U, 2) * R;
 		this.leistungColor = true;
 		return P;
 	}
-	
-	public double IFromPAndU (double P, double U){
+
+	public double IFromPAndU(double P, double U) {
 		System.out.println("Calculate I from P and U");
-		if (U != 0){
-		double I = P/U;
-		this.stromColor = true;
-		return I;
-		}
-		else {
+		if (U != 0) {
+			double I = P / U;
+			this.stromColor = true;
+			return I;
+		} else {
 			this.stromColor = true;
 			return 0;
 		}
 	}
-	
-	public double IFromUAndR (double U, double R){
+
+	public double IFromUAndR(double U, double R) {
 		System.out.println("Calculate I from R and U");
-		if (R != 0){
-		double I = U/R;
-		this.stromColor = true;
-		return I;
-		}
-		else {
+		if (R != 0) {
+			double I = U / R;
+			this.stromColor = true;
+			return I;
+		} else {
 			this.stromColor = true;
 			return 0;
 		}
 	}
-	public double IFromPAndR (double P, double R){
+
+	public double IFromPAndR(double P, double R) {
 		System.out.println("Calculate I from P and R");
 		if (R != 0) {
-		double I = Math.sqrt(P/R);
-		this.stromColor = true;
-		return I;
-		}
-		else {
+			double I = Math.sqrt(P / R);
+			this.stromColor = true;
+			return I;
+		} else {
 			this.stromColor = true;
 			return 0;
 		}
