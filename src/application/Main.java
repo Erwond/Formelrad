@@ -15,9 +15,10 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 
 /**
- * Formelrad Application
- * @author Peter Rutschmann
- * @version 13.09.2018
+ * Berechnet das Formelrad
+ * 
+ * @author Peter Rutschmann / Eric Walker / Nils Wyss
+ * @version 23.11.2018
  */
 public class Main extends Application {
 	@Override
@@ -79,16 +80,22 @@ public class Main extends Application {
 			btnBerechnen.relocate(100, 445);
 			btnBerechnen.setText("Berechnen");
 			root.getChildren().add(btnBerechnen);
-			
+
+			Button btnDeletValue = new Button();
+			btnDeletValue.relocate(175, 445);
+			btnDeletValue.setText("Delete");
+			btnDeletValue.setTextFill(Color.web("red"));
+			root.getChildren().add(btnDeletValue);
+
 			Label lblWarning = new Label();
 			lblWarning.relocate(10, 480);
 			lblWarning.setFont(Font.font(17));
 			lblWarning.setTextFill(Color.web("#D8C300"));
 			root.getChildren().add(lblWarning);
-			
+
 			btnBerechnen.setOnAction(e -> {
 				int score = 0;
-				if(txWiderstand.getText().trim().isEmpty())
+				if (txWiderstand.getText().trim().isEmpty())
 					score++;
 				if (txLeistung.getText().trim().isEmpty())
 					score++;
@@ -96,43 +103,53 @@ public class Main extends Application {
 					score++;
 				if (txStrom.getText().trim().isEmpty())
 					score++;
-				if(score < 2)
+				if (score < 2)
 					lblWarning.setText("Bitte gib nur 2 Werte ein!");
-				else if(score > 2)
+				else if (score > 2)
 					lblWarning.setText("Du musst mindestens 2 Werte eingeben!");
-				else{
-					Calculator myCalculator = new Calculator(
-							parseTxtToDouble(txLeistung.getText()),
-							parseTxtToDouble(txSpannung.getText()),
-							parseTxtToDouble(txStrom.getText()),
+				else {
+					Calculator myCalculator = new Calculator(parseTxtToDouble(txLeistung.getText()),
+							parseTxtToDouble(txSpannung.getText()), parseTxtToDouble(txStrom.getText()),
 							parseTxtToDouble(txWiderstand.getText()));
 					System.out.print("Vorher:  ");
 					System.out.println(myCalculator.toString());
 					myCalculator.calculate();
 					System.out.print("Nachher: ");
 					System.out.println(myCalculator.toString());
-						
+
 					txLeistung.setText(Double.toString(myCalculator.getLeistung()));
-					if(myCalculator.isLeistungColor())
+					if (myCalculator.isLeistungColor())
 						txLeistung.setStyle("-fx-text-inner-color: red;");
 					else
 						txLeistung.setStyle("-fx-text-inner-color: black;");
 					txSpannung.setText(Double.toString(myCalculator.getSpannung()));
-					if(myCalculator.isSpannungColor())
+					if (myCalculator.isSpannungColor())
 						txSpannung.setStyle("-fx-text-inner-color: red;");
 					else
 						txSpannung.setStyle("-fx-text-inner-color: black;");
 					txStrom.setText(Double.toString(myCalculator.getStrom()));
-					if(myCalculator.isStromColor())
+					if (myCalculator.isStromColor())
 						txStrom.setStyle("-fx-text-inner-color: red;");
 					else
 						txStrom.setStyle("-fx-text-inner-color: black;");
 					txWiderstand.setText(Double.toString(myCalculator.getWiderstand()));
-					if(myCalculator.isWiderstandColor())
+					if (myCalculator.isWiderstandColor())
 						txWiderstand.setStyle("-fx-text-inner-color: red;");
 					else
 						txWiderstand.setStyle("-fx-text-inner-color: black;");
-				}		
+				}
+
+			});
+
+			btnDeletValue.setOnAction(b -> {
+				txWiderstand.clear();
+				txStrom.clear();
+				txSpannung.clear();
+				txLeistung.clear();
+				txSpannung.setStyle("-fx-text-inner-color: black;");
+				txStrom.setStyle("-fx-text-inner-color: black;");
+				txWiderstand.setStyle("-fx-text-inner-color: black;");
+				txLeistung.setStyle("-fx-text-inner-color: black;");
 			});
 
 			Scene scene = new Scene(root, 330, 520);
@@ -144,7 +161,7 @@ public class Main extends Application {
 			e.printStackTrace();
 		}
 	}
-	
+
 	public double parseTxtToDouble(String txt) {
 		String txtToParse;
 		if (txt.isEmpty())
@@ -157,7 +174,6 @@ public class Main extends Application {
 		return d;
 	}
 
-	
 	public static void main(String[] args) {
 		launch(args);
 	}
